@@ -32,10 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Please enter a value!" , Toast.LENGTH_LONG).show();
 
-
         }
-
-
 
     }
 
