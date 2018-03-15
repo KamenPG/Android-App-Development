@@ -8,24 +8,34 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
+    double valueInLeva;
+    double valueInEuro;
 
-    public void ConvertCurreny(View view){
+    public void ConvertCurrency(View view){
 
-
-
-
-        Log.i("Info" ,"Button Pressed");
 
         EditText editText =(EditText) findViewById(R.id.editText);
 
+        if (!editText.getText().toString().isEmpty()){
 
-        double valueInLeva = Double.parseDouble(editText.getText().toString());
+            valueInLeva = Double.parseDouble(editText.getText().toString());
 
-        double valueInEuro =  valueInLeva * 0.51;
+            valueInEuro =  valueInLeva * 0.51;
 
-        Log.i("Value" , String.valueOf(valueInEuro));
+            Log.i("Value" , String.valueOf(valueInEuro));
 
-        Toast.makeText(this, "BGN " + valueInLeva + " is €" + valueInEuro, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "BGN " + valueInLeva + " is € " + valueInEuro, Toast.LENGTH_LONG).show();
+
+        }
+
+        else {
+
+            Toast.makeText(this, "Please enter a value!" , Toast.LENGTH_LONG).show();
+
+
+        }
+
+
 
     }
 
