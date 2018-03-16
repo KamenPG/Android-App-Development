@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.inputNumber);
 
 
-        if (!editText.getText().toString().isEmpty() && editText.getText().toString().matches("\\d")){
+        if (!editText.getText().toString().isEmpty() && editText.getText().toString().matches("\\d+")){
 
             int theNumber = Integer.parseInt(editText.getText().toString());
 
