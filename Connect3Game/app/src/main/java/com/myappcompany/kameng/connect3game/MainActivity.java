@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
 
     int activePlayer = 0;
 
-    int gameCounter = 0;
-
     boolean gameActive = true;
 
-    TextView winnerText;
+    String winner = "";
+
+    int  countercount = 0;
 
     public void dropin(View view){
 
@@ -31,10 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         Button playAgainButton;
 
-
         int tappedCounter =Integer.parseInt(counter.getTag().toString());
 
         if (gameState[tappedCounter] == 2 && gameActive){
+
+            countercount++;
 
             gameState [tappedCounter] = activePlayer;
 
@@ -57,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
             }
             counter.animate().translationYBy(1500).rotation(3600).setDuration(300);
 
-            gameCounter++;
-
             for (int[] winningPosition : winningPositions){
 
                 if (gameState[winningPosition[0]] == gameState[winningPosition[1]] && gameState[winningPosition[1]] == gameState[winningPosition[2]] && gameState[winningPosition[0]] != 2){
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                     gameActive = false;
 
-                    String winner = "";
+                    winner = "";
 
                     if (activePlayer == 1) {
 
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                     playAgainButton = (Button) findViewById(R.id.playAgainButton);
-                    winnerText = (TextView) findViewById(R.id.winnerTextView);
+                     TextView winnerText = (TextView) findViewById(R.id.winnerTextView);
 
                     winnerText.setText(winner +" has won!");
 
@@ -90,9 +89,15 @@ public class MainActivity extends AppCompatActivity {
                     winnerText.setVisibility(View.VISIBLE);
 
                 }
-
             }
+        }
 
+                    if(winner.isEmpty() && countercount == 9){
+                    playAgainButton = (Button) findViewById(R.id.playAgainButton);
+                    TextView winnerText = (TextView) findViewById(R.id.winnerTextView);
+                    winnerText.setText(" Draw! ");
+                    playAgainButton.setVisibility(View.VISIBLE);
+                    winnerText.setVisibility(View.VISIBLE);
         }
 
     }
@@ -114,8 +119,6 @@ public class MainActivity extends AppCompatActivity {
 
            counter.setImageDrawable(null);
 
-
-
         }
 
         for (int i=0; i<gameState.length; i++){
@@ -126,6 +129,10 @@ public class MainActivity extends AppCompatActivity {
         activePlayer = 0;
 
         gameActive = true;
+
+        winner = "";
+
+        countercount=0;
 
     }
 
